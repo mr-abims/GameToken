@@ -4,7 +4,6 @@ pragma solidity ^0.8.0;
 import "openzeppelin-contracts/contracts/token/ERC20/ERC20.sol";
 
 contract GameToken is ERC20 {
-    // Constructor to set the token name and symbol
     string[] public gameItems;
     mapping(string => bool) public itemExists;
     mapping(string => address) public itemOwner;
@@ -32,7 +31,6 @@ contract GameToken is ERC20 {
         itemOwner[itemId] = msg.sender;
     }
 
-    // Redeem tokens for in-game items
     function redeem(string memory itemId, uint256 amount) public {
         require(itemExists[itemId], "Item does not exist");
         require(
@@ -53,7 +51,6 @@ contract GameToken is ERC20 {
         return gameItems;
     }
 
-    // Burn function to destroy tokens
     function burn(uint256 _amount) public {
         require(
             balanceOf(msg.sender) >= _amount,
